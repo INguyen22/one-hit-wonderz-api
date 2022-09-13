@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
 
 app.set('port', process.env.PORT || 3001);
 
 app.locals.title = 'One Hit Wonderz';
+
+app.use(cors());
 
 app.locals.oneHitWonderz = {
 	Sixties: [{
@@ -172,7 +175,7 @@ In 2010 Billboard named "Afternoon Delight" the 20th sexiest song of all time.`,
     "genre": "Electro Rock",
     "moods": ["upbeat"],
     "release_date": "September 7, 1979",
-    "bio": `The song relates to concerns about, and mixed attitudes towards 20th-century inventions and machines for the media arts. The track has been positively received, with reviewers praising its unusual musical pop elements. 
+    "bio": `The song relates to concerns about, and mixed attitudes towards 20th-century inventions and machines for the media arts. The track has been positively received, with reviewers praising its unusual musical pop elements.
 On release, the single topped sixteen international music charts, including those in the UK, Australia, and Japan. It also peaked in the top 10 in Canada, Germany, New Zealand and South Africa, but only reached number 40 in the US. It has also been covered by many recording artists.`,
     "cover_image": "https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Video_Killed_the_Radio_Star_single_cover.jpg/220px-Video_Killed_the_Radio_Star_single_cover.jpg",
     "spotify_key": "6t1FIJlZWTQfIZhsGjaulM"
@@ -193,7 +196,7 @@ On release, the single topped sixteen international music charts, including thos
     "genre": "Classic Rock",
     "moods": ["upbeat", "chill"],
     "release_date": "October 10, 1971",
-    "bio": `At 8 minutes and 42 seconds, McLean's combined version is the sixth longest song to enter the Billboard Hot 100 (at the time of release it was the longest). The song also held the record for almost 50 years for being the longest song to reach number one before Taylor Swift's "All Too Well (10 Minute Version)" broke the record in 2021. Due to its exceptional length, it was initially released as a two-sided 7-inch single. "American Pie" has been described as "one of the most successful and debated songs of the 20th century". 
+    "bio": `At 8 minutes and 42 seconds, McLean's combined version is the sixth longest song to enter the Billboard Hot 100 (at the time of release it was the longest). The song also held the record for almost 50 years for being the longest song to reach number one before Taylor Swift's "All Too Well (10 Minute Version)" broke the record in 2021. Due to its exceptional length, it was initially released as a two-sided 7-inch single. "American Pie" has been described as "one of the most successful and debated songs of the 20th century".
 The repeated phrase "the day the music died" refers to a plane crash in 1959 that killed early rock and roll stars Buddy Holly, The Big Bopper, and Ritchie Valens, ending the era of early rock and roll; this became the popular nickname for that crash. The theme of the song goes beyond mourning McLean's childhood music heroes, reflecting the deep cultural changes and profound disillusion and loss of innocence of his generation`,
     "cover_image": "https://m.media-amazon.com/images/I/51PNnoJ+qfL.jpg",
     "spotify_key": "1fDsrQ23eTAVFElUMaf38X"
@@ -219,7 +222,7 @@ The ballad's story is a derivative of the traditional deal with the Devil motif.
     "cover_image": "https://m.media-amazon.com/images/I/41bfleplSiL.jpg",
     "spotify_key": "383Xl5QTigwj3QiA3Qc6S7"
 }
-], 
+],
 	Eighties: [
 {
 	"song_name": "Rock On",
@@ -542,7 +545,7 @@ What ever happened to James Blunt? Absolutely nothing happened to James Blunt. A
     "bio":  `Pretty much the ultimate 2010s One Hit Wonder, Australians Wally De Backer (Gotye) has failed to follow-up the worldwide success of his heartfelt hit. New Zealand singer Kimbra, who also   appears on the record, has mainly kept herself to the Southern hemisphere.`,
     "cover_image": `https://4.bp.blogspot.com/-ApIbk3t_-Ho/T07wtGyTXVI/AAAAAAAABwQ/AWJjth6tvwg/w1200-h630-p-k-no-nu/gotye_somebody_that_i_used_to_know_.jpg`,
     "spotify_key": `4wCmqSrbyCgxEXROQE6vtV`
-}, 
+},
 {
 	"song_name": `Ex's And Oh's`,
 	"artist": `Elle King`,
@@ -550,7 +553,7 @@ What ever happened to James Blunt? Absolutely nothing happened to James Blunt. A
     "moods": [`saucy`, `upbeat`],
     "release_date": `September 23, 2014`,
     "bio": `Tanner Elle Schneider is the daughter of comedian Rob Schneider and had a smash in January 2016 with this swaggering tune. She released a second album, Shake The Spirit, in 2018 but it didn't do much in the UK charts.`,
-    "cover_image": "https://i.discogs.com/uKeqWfJ_p66tTe2zWTgNTwBJ7rrPwHmFdpqHPxLuJy0/rs:fit/g:sm/q:90/h:512/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgwMTc5/NzMtMTQ1MzU3MTgw/Mi04ODY0LmpwZWc.jpeg",   
+    "cover_image": "https://i.discogs.com/uKeqWfJ_p66tTe2zWTgNTwBJ7rrPwHmFdpqHPxLuJy0/rs:fit/g:sm/q:90/h:512/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgwMTc5/NzMtMTQ1MzU3MTgw/Mi04ODY0LmpwZWc.jpeg",
     "spotify_key": `70eDxAyAraNTiD6lx2ZEnH`
 },
 {
@@ -640,10 +643,10 @@ app.get('/api/v1/oneHitWonderz', (request, response) => {
     if (!oneHitWonderz) {
         return response.sendStatus(404);
       }
-    
+
       response.status(200).json(oneHitWonderz);
 });
-  
+
   app.listen(app.get('port'), () => {
     console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
   });
