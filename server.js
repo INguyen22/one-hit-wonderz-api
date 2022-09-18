@@ -12,13 +12,14 @@ app.use(cors());
 
 app.get('/api/v1/oneHitWonderz', async(request, response) => {
     const songs = await knex.select().from('songs')
-    response.status(200).json(songs);
-    // const oneHitWonderz = app.locals.oneHitWonderz
-    // if (!oneHitWonderz) {
-    //     return response.sendStatus(404);
-    //   }
-
-    //   response.status(200).json(oneHitWonderz);
+    const newObject = songs.reduce((obj, currentSong) => {
+        if(!obj[currentSong.decade]) {
+          obj[currentSong.decade] = []
+        }
+        obj[currentSong.decade].push(currentSong)
+        return obj
+      }, {})
+    response.status(200).json(newObject);
 });
 
 app.get('/', (request, response) => {
