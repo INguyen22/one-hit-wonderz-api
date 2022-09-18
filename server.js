@@ -21,6 +21,12 @@ app.get('/api/v1/oneHitWonderz', async(request, response) => {
     //   response.status(200).json(oneHitWonderz);
 });
 
+app.get('/', (request, response) => {
+    response.status(200).json({
+        smoke: "test"
+    })
+})
+
   app.listen(app.get('port'), () => {
     console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
  });
